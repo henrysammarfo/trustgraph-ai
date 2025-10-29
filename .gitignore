@@ -65,6 +65,10 @@ next-env.d.ts
 
 # Prisma
 prisma/migrations/
+
+# Internal (non-public) documentation and prompts
+internal/
+CLAUDE_NEXT_STEPS.md
 prisma/*.db
 
 # Local development
