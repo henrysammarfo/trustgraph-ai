@@ -33,7 +33,7 @@ TrustGraph is an operations console for monitoring autonomous agent activity acr
 - **Blockchain**: Moralis Web3 API, Alchemy RPC
 - **Caching**: In-memory with Redis support caching (Redis optional for distributed setups)
 
-## Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
@@ -42,7 +42,7 @@ TrustGraph is an operations console for monitoring autonomous agent activity acr
 - Moralis API key
 - Alchemy API key
 
-### Installation
+### 🛠 Installation
 
 1. Clone the repository:
    ```bash
@@ -103,9 +103,25 @@ We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) 
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Usage
+## 🖥 Available Routes
 
-### Adding an Agent
+- `/` - Landing page
+- `/dashboard` - Main monitoring dashboard
+- `/dashboard/analytics` - Analytics with interactive charts
+- `/dashboard/agents/[address]` - Agent detail pages
+- `/login`, `/signup` - Authentication pages
+- `/beta`, `/pricing`, `/customers` - Marketing pages
+
+## 🎯 Usage
+
+### Working with Demo Data
+
+The MVP comes pre-loaded with:
+- 5 sample agents with realistic transaction history
+- Pre-calculated trust scores
+- Active alerts for monitoring
+
+### Adding a New Agent
 
 1. Navigate to the Dashboard
 2. Click **Add Agent** button
@@ -130,24 +146,17 @@ The system will automatically:
 - **Search**: Use the search bar to filter agents by name, address, or type
 - **Live Updates**: Watch trust scores update in real-time via WebSocket
 
-### Understanding Trust Scores
+### Transaction Monitoring
 
-Trust scores range from 0-100 based on six factors:
+Our platform tracks key metrics for each address:
 
-1. **Transaction Volume** (15%): Average transaction size
-2. **Transaction Frequency** (15%): Activity consistency
-3. **Gas Efficiency** (15%): Optimization of gas usage
-4. **Success Rate** (25%): Percentage of successful transactions
-5. **Behavioral Consistency** (20%): Pattern stability
-6. **Risk Level** (10%): Anomaly detection
+1. **Transaction Volume**: Total value transferred
+2. **Activity Patterns**: Transaction frequency and timing
+3. **Gas Usage**: Gas efficiency analysis
+4. **Success Rate**: Percentage of successful transactions
+5. **Network Activity**: Cross-chain transaction history
 
-**Score Ranges:**
-- 80-100: Excellent (Green)
-- 60-79: Good (Cyan)
-- 40-59: Fair (Yellow)
-- 0-39: Poor (Red)
-
-## API Endpoints
+## 🔌 API Endpoints
 
 ### Agents
 - `POST /api/agents` - Register new agent
@@ -157,7 +166,7 @@ Trust scores range from 0-100 based on six factors:
 - `GET /api/agents/:address/trust-scores` - Get trust score history
 
 ### Analysis
-- `POST /api/analyze` - Trigger manual AI analysis
+- `POST /api/analyze` - Trigger transaction analysis
 
 ### Alerts
 - `GET /api/alerts` - Get active alerts
@@ -170,7 +179,7 @@ Trust scores range from 0-100 based on six factors:
 ### Statistics
 - `GET /api/stats` - Get platform statistics
 
-## Architecture
+## 🏗 Architecture
 
 \`\`\`
 TrustGraph/
@@ -185,7 +194,7 @@ TrustGraph/
 │   ├── dashboard/               # Dashboard components
 │   └── providers/               # Context providers
 ├── lib/
-│   ├── ai/                      # AI analysis engine
+│   ├── analysis/                # Transaction analysis engine
 │   ├── blockchain/              # Blockchain integrations
 │   ├── websocket/               # WebSocket system
 │   └── redis/                   # Caching layer
@@ -194,7 +203,7 @@ TrustGraph/
 └── scripts/                     # Database scripts
 \`\`\`
 
-## Deployment
+## 🚀 Deployment
 
 ### Vercel Deployment (Recommended)
 
