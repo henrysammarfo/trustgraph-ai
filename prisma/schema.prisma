@@ -1,0 +1,134 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("NEON_NEON_DATABASE_URL")
+}
+
+model AIAgent {
+  id            String        @id @default(cuid())
+  address       String        @unique
+  name          String
+  type          String        // e.g., "DeFi", "Trading", "Governance"
+  trustScore    Float         @default(50.0)
+  status        String        @default("active") // active, suspended, flagged
+  metadata      Json?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  
+  transactions  Transaction[]
+  trustScores   TrustScore[]
+  alerts        Alert[]
+  
+  @@index([address])
+  @@index([trustScore])
+  @@index([status])
+}
+
+model Transaction {
+  id            String    @id @default(cuid())
+  hash          String    @unique
+  agentId       String
+  from          String
+  to            String
+  value         String
+  gasUsed       String?
+  gasPrice      String?
+  status        String    // success, failed, pending
+  chainId       Int
+  blockNumber   Int?
+  timestamp     DateTime
+  metadata      Json?
+  analyzed      Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  
+  agent         AIAgent   @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  
+  @@index([agentId])
+  @@index([hash])
+  @@index([timestamp])
+  @@index([chainId])
+  @@index([analyzed])
+}
+
+model TrustScore {
+  id            String    @id @default(cuid())
+  agentId       String
+  score         Float
+  factors       Json      // breakdown of score factors
+  analysis      String    @db.Text
+  confidence    Float     @default(0.8)
+  timestamp     DateTime  @default(now())
+  
+  agent         AIAgent   @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  
+  @@index([agentId])
+  @@index([timestamp])
+  @@index([score])
+}
+
+model Alert {
+  id            String    @id @default(cuid())
+  agentId       String
+  type          String    // anomaly, risk, suspicious, critical
+  severity      String    // low, medium, high, critical
+  message       String    @db.Text
+  details       Json?
+  resolved      Boolean   @default(false)
+  resolvedAt    DateTime?
+  createdAt     DateTime  @default(now())
+  
+  agent         AIAgent   @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  
+  @@index([agentId])
+  @@index([type])
+  @@index([severity])
+  @@index([resolved])
+  @@index([createdAt])
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  passwordHash  String
+  role          String    @default("user") // user, admin
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  sessions      Session[]
+  
+  @@index([email])
+}
+
+model Session {
+  id            String    @id @default(cuid())
+  userId        String
+  token         String    @unique
+  expiresAt     DateTime
+  createdAt     DateTime  @default(now())
+  
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([token])
+  @@index([expiresAt])
+}
+
+model WaitlistEntry {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  company       String?
+  useCase       String?   @db.Text
+  source        String?   // landing_page, referral, etc.
+  status        String    @default("pending") // pending, invited, converted
+  metadata      Json?
+  createdAt     DateTime  @default(now())
+  
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}

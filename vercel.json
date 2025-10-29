@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "OPENAI_API_KEY": "@openai_api_key",
+    "MORALIS_API_KEY": "@moralis_api_key",
+    "ALCHEMY_API_KEY": "@alchemy_api_key"
+  }
+}

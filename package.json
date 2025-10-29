@@ -1,0 +1,48 @@
+{
+  "name": "trustgraph-monitor",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "latest",
+    "@prisma/client": "latest",
+    "ai": "latest",
+    "child_process": "latest",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "crypto": "latest",
+    "date-fns": "4.1.0",
+    "fs": "latest",
+    "http": "latest",
+    "jose": "latest",
+    "next": "16.0.1-canary.0",
+    "openai": "latest",
+    "path": "latest",
+    "prisma": "latest",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "recharts": "latest",
+    "socket.io": "latest",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7",
+    "tw-animate-css": "latest",
+    "url": "0.11.4",
+    "ws": "latest",
+    "zod": "4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.1-canary.0",
+    "postcss": "^8.5",
+    "tailwindcss": "^4.1.9",
+    "typescript": "^5"
+  }
+}
