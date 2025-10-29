@@ -15,16 +15,28 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts"
-import useSWR from "swr"
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+import { useEffect, useState } from "react"
 
 const COLORS = ["#06b6d4", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"]
 
 export function AnalyticsCharts() {
-  const { data: stats } = useSWR("/api/stats", fetcher, {
-    refreshInterval: 30000,
-  })
+  const [stats, setStats] = useState<any>(null)
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await fetch("/api/stats")
+        const data = await res.json()
+        setStats(data)
+      } catch (error) {
+        console.error("Failed to fetch stats:", error)
+      }
+    }
+
+    fetchStats()
+    const interval = setInterval(fetchStats, 30000)
+    return () => clearInterval(interval)
+  }, [])
 
   if (!stats) {
     return (

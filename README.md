@@ -1,110 +1,107 @@
-# TrustGraph - Blockchain Transaction Monitoring Platform (MVP)
+# TrustGraph
 
-🚀 **MVP Development Complete!** - A real-time blockchain transaction monitoring platform with multi-chain analysis and live WebSocket updates.
+TrustGraph is an operations console for monitoring autonomous agent activity across public blockchains. The platform combines on-chain telemetry, statistical scoring, and operational alerting to help security teams evaluate agent behavior in real time.
 
-## 🚀 MVP Features
+## Table of Contents
 
-✅ **Fully Functional MVP** with production-ready deployment
-✅ **Real-time Transaction Monitoring**: Track blockchain activity with comprehensive scoring
-✅ **Multi-chain Integration**: Monitor transactions across multiple networks
-✅ **WebSocket Live Updates**: Real-time transaction and alert notifications
-✅ **Demo Data**: Pre-seeded with 5 agents, transactions, trust scores, and alerts
-✅ **Responsive Dashboard**: Works on desktop and mobile
-- **Professional Dashboard**: Clean, modern monitoring interface
-- **Alert System**: Automated transaction monitoring and risk alerts
-- **Historical Analytics**: Track transaction patterns and trends
-- **Address Detail Pages**: Detailed view of address activity with charts
-- **Search & Filtering**: Find addresses quickly by name or address
-- **Analytics Dashboard**: Comprehensive insights with Recharts visualizations
+1. [Key Capabilities](#key-capabilities)
+2. [Technology Stack](#technology-stack)
+3. [Getting Started](#getting-started)
+   - [Prerequisites](#prerequisites)
+   - [Installation](#installation)
+4. [Deployment](#deployment)
+5. [API Documentation](#api-documentation)
+6. [Contributing](#contributing)
+7. [License](#license)
 
-## 🛠 Tech Stack
+## Key Capabilities
 
-- **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS v4, shadcn/ui, Recharts
-- **Backend**: Next.js API Routes, Prisma ORM, PostgreSQL (Neon)
-- **Authentication**: Secure login/signup system
-- **Real-time**: Socket.IO for live updates
-- **Real-time**: Socket.IO for WebSocket connections
-- **Blockchain**: Moralis API, Alchemy
-- **Caching**: In-memory caching (Redis optional for distributed setups)
+- **Trust Scoring Engine** – Normalizes on-chain behavior into a 0–100 trust score using weighted metrics
+- **Multi-Chain Coverage** – Monitors transactions across Ethereum, Polygon, Arbitrum, and BNB Smart Chain
+- **Live Telemetry** – Real-time updates for trust scores, transactions, and alerts
+- **Alert System** – Automated detection of anomalies and suspicious activities
+- **Analyst Workflows** – Detailed agent views, historical charts, and comparison tools
+- **Analytics Suite** – Comprehensive statistics and trend visualizations
+
+## Technology Stack
+
+- **Frontend**: Next.js 16, React 19, TypeScript 5
+- **Styling**: Tailwind CSS v4, shadcn/ui
+- **Data Layer**: Prisma ORM, PostgreSQL (Neon)
+- **Real-time**: Socket.IO
+- **Visualization**: Recharts
+- **Blockchain**: Moralis Web3 API, Alchemy RPC
+- **Caching**: In-memory with Redis support caching (Redis optional for distributed setups)
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js 18+ 
-- PostgreSQL database (Neon integrated)
+- Node.js 18+
+- PostgreSQL database (Neon recommended)
 - Moralis API key
 - Alchemy API key
-- Redis (optional - uses in-memory fallback if not provided)
 
 ### 🛠 Installation
 
-1. **Clone or download the project**
+1. Clone the repository:
    ```bash
-   # Clone the repository
-   git clone https://github.com/yourusername/trustgraph-ai.git
-   
-   # Navigate to project directory
-   cd trustgraph-ai
-   
-   # Install dependencies
-   npm install
-   
-   # Start development server
-   npm run dev
+   git clone https://github.com/your-org/trustgraph.git
+   cd trustgraph
    ```
-   
-   The app will be available at [http://localhost:3000](http://localhost:3000)
 
-2. **Install dependencies**
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-3. **Set up environment variables**
-   
-   Create a `.env.local` file:
-   \`\`\`env
-   # Database 
-   NEON_DATABASE_URL="postgresql://..."
-   
-   # Moralis
-   MORALIS_API_KEY="eyJhbGc..."
-   
-   # Alchemy
-   ALCHEMY_API_KEY="..."
-   ALCHEMY_HTTPS_URL="https://eth-mainnet.g.alchemy.com/v2/..."
-   
-   # Optional: Redis (uses in-memory cache if not provided)
-   KV_REST_API_URL="https://..."
-   KV_REST_API_TOKEN="..."
-   \`\`\`
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your configuration
+   ```
 
-4. **Initialize database**
-   \`\`\`bash
+4. Initialize the database:
+   ```bash
    npx prisma generate
    npx prisma db push
-   \`\`\`
+   npx tsx scripts/seed.ts
+   ```
 
-5. **Run development server**
-   \`\`\`bash
+5. Start the development server:
+   ```bash
    npm run dev
-   \`\`\`
+   ```
 
-6. **Open the app**
-   \`\`\`
-   http://localhost:3000
-   \`\`\`
+## Deployment
 
-### Optional: Redis Setup
+### Vercel Deployment
 
-The platform includes in-memory caching by default. For production environments with multiple instances, you can optionally add Redis:
+1. Push your code to a Git repository
+2. Import the repository into Vercel
+3. Configure environment variables in the Vercel dashboard
+4. Deploy
 
-1. Add Upstash Redis integration in v0
-2. The environment variables will be automatically added
-3. The platform will automatically use Redis when available, falling back to in-memory cache otherwise
+For detailed deployment instructions, see our [Deployment Guide](DEPLOYMENT.md).
 
-**Note**: Redis is a paid service. The platform works perfectly fine without it using the built-in in-memory cache.
+## API Documentation
+
+The TrustGraph API provides endpoints for:
+
+- Agent management
+- Transaction monitoring
+- Alert handling
+- Analytics and reporting
+
+Refer to [API.md](API.md) for complete documentation.
+
+## Contributing
+
+We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🖥 Available Routes
 
