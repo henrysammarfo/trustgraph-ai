@@ -9,9 +9,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  experimental: {
-    serverComponentsExternalPackages: ['bcryptjs'],
-  },
+  experimental: {},
+  // External packages that should be bundled with the server
+  serverExternalPackages: ['@prisma/client', 'bcryptjs']
 }
 
 export default nextConfig
