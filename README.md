@@ -65,7 +65,7 @@
    
    Create a `.env.local` file:
    \`\`\`env
-   # Database (auto-configured with Neon in v0)
+   # Database 
    NEON_DATABASE_URL="postgresql://..."
    
    # Moralis
