@@ -82,7 +82,7 @@ TrustGraph is an operations console for monitoring autonomous agent activity acr
 3. Configure environment variables in the Vercel dashboard
 4. Deploy
 
-For detailed deployment instructions, see our [Deployment Guide](DEPLOYMENT.md).
+For detailed deployment instructions, see `docs/DEPLOYMENT.md`.
 
 ## API Documentation
 
@@ -216,8 +216,7 @@ TrustGraph/
    \`\`\`
 
 2. **Deploy to Vercel**
-   - Click **Publish** in v0, or
-   - Import project in Vercel dashboard
+   - Import the project in the Vercel dashboard
 
 3. **Add Environment Variables**
    - Go to Settings → Environment Variables
@@ -227,9 +226,7 @@ TrustGraph/
    - Vercel will automatically run migrations
    - Your app will be live at `your-app.vercel.app`
 
-### Custom Server Note
-
-The app uses a custom Next.js server (`server.js`) for Socket.IO WebSocket support. Vercel handles this automatically.
+ 
 
 ## Customization
 
@@ -278,13 +275,13 @@ Edit `lib/ai/analyzer.ts` in the `checkAndCreateAlerts` method.
 - Review Vercel function logs for errors
 
 ### Database Connection Issues
-- Ensure Neon database is connected in v0
+- Ensure your Neon/PostgreSQL database is reachable
 - Run `npx prisma db push` to sync schema
-- Check connection string format
+- Verify the `DATABASE_URL` connection string format
 
 ## Contributing
 
-This is a hackathon project built with v0. Feel free to fork and customize for your needs.
+This is an open project. Feel free to fork and customize for your needs.
 
 ## License
 
@@ -300,4 +297,51 @@ For issues or questions:
 
 ---
 
-Built with ❤️ using v0, Next.js, and AI
+## Configuration
+
+Key environment variables (see `.env.example` for the full list):
+
+- `DATABASE_URL` – PostgreSQL connection string (Neon recommended)
+- `OPENAI_API_KEY` – For AI analysis text generation
+- `MORALIS_API_KEY` – Wallet transaction fetches
+- `ALCHEMY_API_KEY` – Network RPC calls (optional helper)
+- `JWT_SECRET` – Cookie session signing secret
+- `KV_REST_API_URL` / `KV_REST_API_TOKEN` – Optional Redis (Upstash) config
+
+Application configuration is centralized in `lib/config.ts`:
+
+- `analysis.analysisInterval` – Analysis cadence (default 5 minutes)
+- `analysis.minTransactionsForAnalysis` – Minimum tx count before scoring
+- `trustScore` thresholds – Boundaries for status badges and alerts
+
+## Running the App
+
+Start the development server:
+```bash
+npm run dev
+```
+Visit `http://localhost:3000`.
+
+## Monitoring & Analysis
+
+- The blockchain monitor (`lib/blockchain/monitor.ts`) fetches wallet transactions via Moralis on a 30‑second cadence per agent and persists deduplicated results by tx hash.
+- The analysis engine (`lib/ai/analyzer.ts`) computes weighted trust factors (volume, frequency, gas efficiency, success rate, consistency, risk) and produces a final score (0–100). On success it stores a `TrustScore` record, updates the agent’s `trustScore`, and emits alerts if thresholds are crossed.
+- The scheduler (`lib/ai/scheduler.ts`) runs on a configurable interval, analyzing only agents with sufficient new data and time since last analysis.
+- WebSocket utilities exist to broadcast trust score updates, alerts, and new transactions; the default client hook logs subscriptions and can be wired to a live Socket.IO endpoint if desired.
+
+## API Overview
+
+High‑level endpoints (see inline route handlers under `app/api/*` for details):
+
+- Agents: list, create, detail, transactions, trust‑scores
+- Analysis: `POST /api/analyze`
+- Alerts: list and resolve
+- Auth: signup, login, logout, current user
+- Webhooks: Moralis stream ingestion with HMAC verification
+
+## Security
+
+- API keys are read from environment variables and never exposed to client‑side code
+- JWT session cookies are HTTP‑only and signed with `HS256`
+- Input validation and basic rate‑limiting patterns are recommended for production
+- Review and rotate credentials regularly
