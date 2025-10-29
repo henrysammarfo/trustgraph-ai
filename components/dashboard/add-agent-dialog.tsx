@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Plus, Loader2 } from "lucide-react"
+import { PlusIcon, Loader2Icon } from "@/components/icons"
 import { useRouter } from "next/navigation"
 
 export function AddAgentDialog() {
@@ -71,7 +71,7 @@ export function AddAgentDialog() {
           size="sm"
           className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-0"
         >
-          <Plus className="w-4 h-4 mr-2" />
+          <PlusIcon className="w-4 h-4 mr-2" />
           Add Agent
         </Button>
       </DialogTrigger>
@@ -165,7 +165,7 @@ export function AddAgentDialog() {
             >
               {loading ? (
                 <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  <Loader2Icon className="w-4 h-4 mr-2 animate-spin" />
                   Adding...
                 </>
               ) : (

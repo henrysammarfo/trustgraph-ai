@@ -1,9 +1,13 @@
+"use client"
+
 import { DashboardHeader } from "@/components/dashboard/header"
 import { AnalyticsCharts } from "@/components/dashboard/analytics-charts"
 import { TransactionMap } from "@/components/dashboard/transaction-map"
 import { AgentComparison } from "@/components/dashboard/agent-comparison"
 import { Card } from "@/components/ui/card"
-import { TrendingUp, Activity, AlertTriangle, CheckCircle } from "lucide-react"
+import { TrendingUpIcon, ActivityIcon, AlertTriangleIcon, CheckCircleIcon } from "@/components/icons"
+
+export const dynamic = 'force-dynamic'
 
 export default function AnalyticsPage() {
   return (
@@ -25,7 +29,7 @@ export default function AnalyticsPage() {
                 <p className="text-sm text-slate-400">Avg Trust Score</p>
                 <p className="text-3xl font-bold text-cyan-400 mt-1">78.5</p>
               </div>
-              <TrendingUp className="w-8 h-8 text-cyan-400" />
+              <TrendingUpIcon className="w-8 h-8 text-cyan-400" />
             </div>
             <p className="text-xs text-emerald-400 mt-2">↑ 5.2% from last week</p>
           </Card>
@@ -36,7 +40,7 @@ export default function AnalyticsPage() {
                 <p className="text-sm text-slate-400">Total Transactions</p>
                 <p className="text-3xl font-bold text-white mt-1">12,847</p>
               </div>
-              <Activity className="w-8 h-8 text-blue-400" />
+              <ActivityIcon className="w-8 h-8 text-blue-400" />
             </div>
             <p className="text-xs text-emerald-400 mt-2">↑ 12.3% from last week</p>
           </Card>
@@ -47,7 +51,7 @@ export default function AnalyticsPage() {
                 <p className="text-sm text-slate-400">Active Alerts</p>
                 <p className="text-3xl font-bold text-yellow-400 mt-1">23</p>
               </div>
-              <AlertTriangle className="w-8 h-8 text-yellow-400" />
+              <AlertTriangleIcon className="w-8 h-8 text-yellow-400" />
             </div>
             <p className="text-xs text-red-400 mt-2">↑ 3 new alerts today</p>
           </Card>
@@ -58,7 +62,7 @@ export default function AnalyticsPage() {
                 <p className="text-sm text-slate-400">Success Rate</p>
                 <p className="text-3xl font-bold text-emerald-400 mt-1">94.2%</p>
               </div>
-              <CheckCircle className="w-8 h-8 text-emerald-400" />
+              <CheckCircleIcon className="w-8 h-8 text-emerald-400" />
             </div>
             <p className="text-xs text-emerald-400 mt-2">↑ 1.8% from last week</p>
           </Card>

@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, Activity, TrendingUp, AlertTriangle, ExternalLink } from "lucide-react"
+import { ArrowLeftIcon, ActivityIcon, TrendingUpIcon, AlertTriangleIcon, ExternalLinkIcon } from "@/components/icons"
 import { Line, LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from "recharts"
 import { useWebSocket } from "@/components/providers/websocket-provider"
 
@@ -97,7 +97,7 @@ export default function AgentDetailPage({ params }: AgentDetailPageProps) {
         <div className="text-center">
           <h2 className="text-xl text-slate-400 mb-4">Agent not found</h2>
           <Button onClick={() => router.push("/dashboard")}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeftIcon className="w-4 h-4 mr-2" />
             Back to Dashboard
           </Button>
         </div>
@@ -128,7 +128,7 @@ export default function AgentDetailPage({ params }: AgentDetailPageProps) {
       <div className="border-b border-slate-800 bg-gradient-to-r from-slate-900/80 via-slate-800/50 to-slate-900/80 backdrop-blur-xl">
         <div className="container mx-auto p-6">
           <Button variant="ghost" onClick={() => router.push("/dashboard")} className="mb-4">
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeftIcon className="w-4 h-4 mr-2" />
             Back to Dashboard
           </Button>
 
@@ -161,7 +161,7 @@ export default function AgentDetailPage({ params }: AgentDetailPageProps) {
       <div className="container mx-auto p-6 space-y-6">
         <Card className="bg-gradient-to-br from-slate-900/90 to-slate-800/50 border border-slate-700/50 shadow-2xl shadow-cyan-500/10 p-6">
           <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-cyan-400" />
+            <TrendingUpIcon className="w-5 h-5 text-cyan-400" />
             Trust Score Trend
           </h2>
           <ResponsiveContainer width="100%" height={300}>
@@ -187,7 +187,7 @@ export default function AgentDetailPage({ params }: AgentDetailPageProps) {
         {factorsData.length > 0 && (
           <Card className="bg-gradient-to-br from-slate-900/90 to-slate-800/50 border border-slate-700/50 shadow-2xl shadow-emerald-500/10 p-6">
             <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-              <Activity className="w-5 h-5 text-cyan-400" />
+              <ActivityIcon className="w-5 h-5 text-cyan-400" />
               Trust Factors Breakdown
             </h2>
             <ResponsiveContainer width="100%" height={300}>
@@ -214,7 +214,7 @@ export default function AgentDetailPage({ params }: AgentDetailPageProps) {
         {agent.trustScores?.[0]?.analysis && (
           <Card className="bg-gradient-to-br from-slate-900/90 to-slate-800/50 border border-slate-700/50 shadow-2xl shadow-yellow-500/10 p-6">
             <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-              <AlertTriangle className="w-5 h-5 text-yellow-400" />
+              <AlertTriangleIcon className="w-5 h-5 text-yellow-400" />
               AI Analysis
             </h2>
             <p className="text-slate-300 leading-relaxed">{agent.trustScores[0].analysis}</p>
@@ -251,7 +251,7 @@ export default function AgentDetailPage({ params }: AgentDetailPageProps) {
                   </Badge>
                   <Button size="sm" variant="ghost" asChild>
                     <a href={`https://etherscan.io/tx/${tx.hash}`} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLinkIcon className="w-4 h-4" />
                     </a>
                   </Button>
                 </div>

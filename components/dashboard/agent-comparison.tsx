@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { GitCompare, TrendingUp, TrendingDown } from "lucide-react"
+import { GitCompareIcon, TrendingUpIcon, TrendingDownIcon } from "@/components/icons"
 import { useState, useEffect } from "react"
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer, Legend } from "recharts"
 
@@ -11,13 +11,13 @@ interface Agent {
   id: string
   name: string
   trustScore: number
-  factors: {
-    transactionVolume: number
-    transactionFrequency: number
-    gasEfficiency: number
-    successRate: number
-    behavioralConsistency: number
-    riskLevel: number
+  factors?: {
+    transactionVolume?: number
+    transactionFrequency?: number
+    gasEfficiency?: number
+    successRate?: number
+    behavioralConsistency?: number
+    riskLevel?: number
   }
 }
 
@@ -37,55 +37,57 @@ export function AgentComparison() {
       .catch((err) => console.error("[v0] Failed to fetch agents:", err))
   }, [])
 
+  const agent1 = agents.find((a) => a.id === selectedAgents[0])
+  const agent2 = agents.find((a) => a.id === selectedAgents[1])
+
+  const defaultFactors = {
+    transactionVolume: 0,
+    transactionFrequency: 0,
+    gasEfficiency: 0,
+    successRate: 0,
+    behavioralConsistency: 0,
+    riskLevel: 0,
+  }
+
+  const agent1Factors = agent1?.factors ?? defaultFactors
+  const agent2Factors = agent2?.factors ?? defaultFactors
+
   const comparisonData =
-    selectedAgents.length === 2
+    selectedAgents.length === 2 && agent1 && agent2
       ? [
           {
             metric: "Volume",
-            [agents.find((a) => a.id === selectedAgents[0])?.name || "Agent 1"]:
-              agents.find((a) => a.id === selectedAgents[0])?.factors.transactionVolume || 0,
-            [agents.find((a) => a.id === selectedAgents[1])?.name || "Agent 2"]:
-              agents.find((a) => a.id === selectedAgents[1])?.factors.transactionVolume || 0,
+            [agent1.name]: agent1Factors.transactionVolume ?? 0,
+            [agent2.name]: agent2Factors.transactionVolume ?? 0,
           },
           {
             metric: "Frequency",
-            [agents.find((a) => a.id === selectedAgents[0])?.name || "Agent 1"]:
-              agents.find((a) => a.id === selectedAgents[0])?.factors.transactionFrequency || 0,
-            [agents.find((a) => a.id === selectedAgents[1])?.name || "Agent 2"]:
-              agents.find((a) => a.id === selectedAgents[1])?.factors.transactionFrequency || 0,
+            [agent1.name]: agent1Factors.transactionFrequency ?? 0,
+            [agent2.name]: agent2Factors.transactionFrequency ?? 0,
           },
           {
             metric: "Gas Efficiency",
-            [agents.find((a) => a.id === selectedAgents[0])?.name || "Agent 1"]:
-              agents.find((a) => a.id === selectedAgents[0])?.factors.gasEfficiency || 0,
-            [agents.find((a) => a.id === selectedAgents[1])?.name || "Agent 2"]:
-              agents.find((a) => a.id === selectedAgents[1])?.factors.gasEfficiency || 0,
+            [agent1.name]: agent1Factors.gasEfficiency ?? 0,
+            [agent2.name]: agent2Factors.gasEfficiency ?? 0,
           },
           {
             metric: "Success Rate",
-            [agents.find((a) => a.id === selectedAgents[0])?.name || "Agent 1"]:
-              agents.find((a) => a.id === selectedAgents[0])?.factors.successRate || 0,
-            [agents.find((a) => a.id === selectedAgents[1])?.name || "Agent 2"]:
-              agents.find((a) => a.id === selectedAgents[1])?.factors.successRate || 0,
+            [agent1.name]: agent1Factors.successRate ?? 0,
+            [agent2.name]: agent2Factors.successRate ?? 0,
           },
           {
             metric: "Consistency",
-            [agents.find((a) => a.id === selectedAgents[0])?.name || "Agent 1"]:
-              agents.find((a) => a.id === selectedAgents[0])?.factors.behavioralConsistency || 0,
-            [agents.find((a) => a.id === selectedAgents[1])?.name || "Agent 2"]:
-              agents.find((a) => a.id === selectedAgents[1])?.factors.behavioralConsistency || 0,
+            [agent1.name]: agent1Factors.behavioralConsistency ?? 0,
+            [agent2.name]: agent2Factors.behavioralConsistency ?? 0,
           },
         ]
       : []
-
-  const agent1 = agents.find((a) => a.id === selectedAgents[0])
-  const agent2 = agents.find((a) => a.id === selectedAgents[1])
 
   return (
     <Card className="p-6 bg-gradient-to-br from-slate-900/90 to-slate-900/50 border-slate-800/50 backdrop-blur">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          <GitCompare className="w-5 h-5 text-cyan-400" />
+          <GitCompareIcon className="w-5 h-5 text-cyan-400" />
           <h2 className="text-lg font-bold text-white">Agent Comparison</h2>
         </div>
         <Button variant="outline" size="sm" className="border-slate-700 text-slate-300 bg-transparent">
@@ -150,8 +152,8 @@ export function AgentComparison() {
 
           {/* Detailed comparison */}
           <div className="grid grid-cols-2 gap-4">
-            {Object.entries(agent1.factors).map(([key, value]) => {
-              const agent2Value = agent2.factors[key as keyof typeof agent2.factors]
+            {Object.entries(agent1Factors).map(([key, value]) => {
+              const agent2Value = agent2Factors[key as keyof typeof agent2Factors] ?? 0
               const diff = value - agent2Value
               const isDifferent = Math.abs(diff) > 5
 
@@ -163,9 +165,9 @@ export function AgentComparison() {
                     {isDifferent && (
                       <div className="flex items-center gap-1">
                         {diff > 0 ? (
-                          <TrendingUp className="w-4 h-4 text-emerald-400" />
+                          <TrendingUpIcon className="w-4 h-4 text-emerald-400" />
                         ) : (
-                          <TrendingDown className="w-4 h-4 text-red-400" />
+                          <TrendingDownIcon className="w-4 h-4 text-red-400" />
                         )}
                         <span className="text-xs text-slate-400">{Math.abs(diff).toFixed(0)}</span>
                       </div>
@@ -179,7 +181,7 @@ export function AgentComparison() {
         </div>
       ) : (
         <div className="text-center py-12 text-slate-400">
-          <GitCompare className="w-12 h-12 mx-auto mb-3 opacity-50" />
+          <GitCompareIcon className="w-12 h-12 mx-auto mb-3 opacity-50" />
           <p>Select two agents to compare their trust metrics</p>
         </div>
       )}

@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { MapPin } from "lucide-react"
+import { MapPinIcon } from "@/components/icons"
 import { useEffect, useState } from "react"
 
 interface TransactionLocation {
@@ -35,7 +35,7 @@ export function TransactionMap() {
   return (
     <Card className="p-6 bg-gradient-to-br from-slate-900/90 to-slate-900/50 border-slate-800/50 backdrop-blur">
       <div className="flex items-center gap-2 mb-6">
-        <MapPin className="w-5 h-5 text-cyan-400" />
+        <MapPinIcon className="w-5 h-5 text-cyan-400" />
         <h2 className="text-lg font-bold text-white">Transaction Geolocation</h2>
       </div>
 

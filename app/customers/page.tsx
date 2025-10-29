@@ -1,7 +1,7 @@
 // Customer case studies and testimonials page
 "use client"
 
-import { Shield, TrendingUp, AlertTriangle, ArrowRight, Building2, Users, DollarSign } from "lucide-react"
+import { CheckCircle2Icon, UsersIcon, BuildingIcon, TrendingUpIcon, AlertTriangleIcon, ArrowRightIcon, DollarSignIcon, ShieldIcon } from "@/components/icons"
 import Link from "next/link"
 
 export default function CustomersPage() {
@@ -51,17 +51,17 @@ export default function CustomersPage() {
           {/* Impact Stats */}
           <div className="grid md:grid-cols-3 gap-6 mb-20">
             <div className="p-8 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20">
-              <DollarSign className="w-12 h-12 text-cyan-400 mb-4" />
+              <DollarSignIcon className="w-12 h-12 text-cyan-400 mb-4" />
               <div className="text-4xl font-bold mb-2">$2.3B+</div>
               <div className="text-gray-400">Assets Protected</div>
             </div>
             <div className="p-8 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20">
-              <AlertTriangle className="w-12 h-12 text-emerald-400 mb-4" />
+              <AlertTriangleIcon className="w-12 h-12 text-emerald-400 mb-4" />
               <div className="text-4xl font-bold mb-2">847</div>
               <div className="text-gray-400">Threats Detected</div>
             </div>
             <div className="p-8 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20">
-              <Users className="w-12 h-12 text-cyan-400 mb-4" />
+              <UsersIcon className="w-12 h-12 text-cyan-400 mb-4" />
               <div className="text-4xl font-bold mb-2">50+</div>
               <div className="text-gray-400">Beta Partners</div>
             </div>
@@ -73,7 +73,7 @@ export default function CustomersPage() {
             <div className="p-10 rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-xl">
               <div className="flex items-start gap-6 mb-6">
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center">
-                  <Building2 className="w-8 h-8 text-white" />
+                  <BuildingIcon className="w-8 h-8 text-white" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold mb-2">DeFi Protocol</h3>
@@ -126,7 +126,7 @@ export default function CustomersPage() {
             <div className="p-10 rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-xl">
               <div className="flex items-start gap-6 mb-6">
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center">
-                  <Shield className="w-8 h-8 text-white" />
+                  <ShieldIcon className="w-8 h-8 text-white" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold mb-2">AI Trading Firm</h3>
@@ -181,7 +181,7 @@ export default function CustomersPage() {
             <div className="p-10 rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-xl">
               <div className="flex items-start gap-6 mb-6">
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center">
-                  <TrendingUp className="w-8 h-8 text-white" />
+                  <TrendingUpIcon className="w-8 h-8 text-white" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold mb-2">Web3 Gaming Platform</h3>
@@ -244,7 +244,7 @@ export default function CustomersPage() {
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-semibold hover:shadow-2xl hover:shadow-cyan-500/50 transition-all"
             >
               Apply for Beta Access
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRightIcon className="w-5 h-5" />
             </Link>
           </div>
         </div>
