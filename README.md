@@ -1,52 +1,65 @@
-# TrustGraph - AI Agent Trust Monitoring Platform
+# TrustGraph - Blockchain Transaction Monitoring Platform (MVP)
 
-Real-time AI agent trust monitoring platform with blockchain analysis, AI-powered behavioral analysis, and live WebSocket updates.
+🚀 **MVP Development Complete!** - A real-time blockchain transaction monitoring platform with multi-chain analysis and live WebSocket updates.
 
-## Features
+## 🚀 MVP Features
 
-- **Real-time Trust Score Monitoring**: Track AI agent trustworthiness with scores from 0-100
-- **Multi-chain Blockchain Integration**: Monitor transactions across Ethereum, Polygon, Arbitrum, and BSC
-- **AI-Powered Analysis**: OpenAI GPT-4 powered behavioral analysis and risk detection
-- **WebSocket Live Updates**: Real-time trust score, transaction, and alert notifications
-- **Professional Dashboard**: SOC-style dark theme monitoring interface
-- **Alert System**: Automated anomaly detection and risk alerts
-- **Historical Analytics**: Track trust score trends and transaction patterns
-- **Agent Detail Pages**: Deep dive into individual agent performance with charts
-- **Search & Filtering**: Find agents quickly by name, address, or type
+✅ **Fully Functional MVP** with production-ready deployment
+✅ **Real-time Transaction Monitoring**: Track blockchain activity with comprehensive scoring
+✅ **Multi-chain Integration**: Monitor transactions across multiple networks
+✅ **WebSocket Live Updates**: Real-time transaction and alert notifications
+✅ **Demo Data**: Pre-seeded with 5 agents, transactions, trust scores, and alerts
+✅ **Responsive Dashboard**: Works on desktop and mobile
+- **Professional Dashboard**: Clean, modern monitoring interface
+- **Alert System**: Automated transaction monitoring and risk alerts
+- **Historical Analytics**: Track transaction patterns and trends
+- **Address Detail Pages**: Detailed view of address activity with charts
+- **Search & Filtering**: Find addresses quickly by name or address
 - **Analytics Dashboard**: Comprehensive insights with Recharts visualizations
 
-## Tech Stack
+## 🛠 Tech Stack
 
 - **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS v4, shadcn/ui, Recharts
 - **Backend**: Next.js API Routes, Prisma ORM, PostgreSQL (Neon)
+- **Authentication**: Secure login/signup system
+- **Real-time**: Socket.IO for live updates
 - **Real-time**: Socket.IO for WebSocket connections
-- **AI**: Vercel AI SDK with OpenAI GPT-4
 - **Blockchain**: Moralis API, Alchemy
 - **Caching**: In-memory caching (Redis optional for distributed setups)
 
-## Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
 - Node.js 18+ 
 - PostgreSQL database (Neon integrated)
-- OpenAI API key
 - Moralis API key
 - Alchemy API key
 - Redis (optional - uses in-memory fallback if not provided)
 
-### Installation
+### 🛠 Installation
 
 1. **Clone or download the project**
-   \`\`\`bash
-   # Using v0: Click "Download ZIP" or use the shadcn CLI command
-   npx shadcn@latest init
-   \`\`\`
+   ```bash
+   # Clone the repository
+   git clone https://github.com/yourusername/trustgraph-ai.git
+   
+   # Navigate to project directory
+   cd trustgraph-ai
+   
+   # Install dependencies
+   npm install
+   
+   # Start development server
+   npm run dev
+   ```
+   
+   The app will be available at [http://localhost:3000](http://localhost:3000)
 
 2. **Install dependencies**
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 
 3. **Set up environment variables**
    
@@ -54,9 +67,6 @@ Real-time AI agent trust monitoring platform with blockchain analysis, AI-powere
    \`\`\`env
    # Database (auto-configured with Neon in v0)
    NEON_DATABASE_URL="postgresql://..."
-   
-   # OpenAI
-   OPENAI_API_KEY="sk-proj-..."
    
    # Moralis
    MORALIS_API_KEY="eyJhbGc..."
@@ -96,9 +106,25 @@ The platform includes in-memory caching by default. For production environments 
 
 **Note**: Redis is a paid service. The platform works perfectly fine without it using the built-in in-memory cache.
 
-## Usage
+## 🖥 Available Routes
 
-### Adding an Agent
+- `/` - Landing page
+- `/dashboard` - Main monitoring dashboard
+- `/dashboard/analytics` - Analytics with interactive charts
+- `/dashboard/agents/[address]` - Agent detail pages
+- `/login`, `/signup` - Authentication pages
+- `/beta`, `/pricing`, `/customers` - Marketing pages
+
+## 🎯 Usage
+
+### Working with Demo Data
+
+The MVP comes pre-loaded with:
+- 5 sample agents with realistic transaction history
+- Pre-calculated trust scores
+- Active alerts for monitoring
+
+### Adding a New Agent
 
 1. Navigate to the Dashboard
 2. Click **Add Agent** button
@@ -123,24 +149,17 @@ The system will automatically:
 - **Search**: Use the search bar to filter agents by name, address, or type
 - **Live Updates**: Watch trust scores update in real-time via WebSocket
 
-### Understanding Trust Scores
+### Transaction Monitoring
 
-Trust scores range from 0-100 based on six factors:
+Our platform tracks key metrics for each address:
 
-1. **Transaction Volume** (15%): Average transaction size
-2. **Transaction Frequency** (15%): Activity consistency
-3. **Gas Efficiency** (15%): Optimization of gas usage
-4. **Success Rate** (25%): Percentage of successful transactions
-5. **Behavioral Consistency** (20%): Pattern stability
-6. **Risk Level** (10%): Anomaly detection
+1. **Transaction Volume**: Total value transferred
+2. **Activity Patterns**: Transaction frequency and timing
+3. **Gas Usage**: Gas efficiency analysis
+4. **Success Rate**: Percentage of successful transactions
+5. **Network Activity**: Cross-chain transaction history
 
-**Score Ranges:**
-- 80-100: Excellent (Green)
-- 60-79: Good (Cyan)
-- 40-59: Fair (Yellow)
-- 0-39: Poor (Red)
-
-## API Endpoints
+## 🔌 API Endpoints
 
 ### Agents
 - `POST /api/agents` - Register new agent
@@ -150,7 +169,7 @@ Trust scores range from 0-100 based on six factors:
 - `GET /api/agents/:address/trust-scores` - Get trust score history
 
 ### Analysis
-- `POST /api/analyze` - Trigger manual AI analysis
+- `POST /api/analyze` - Trigger transaction analysis
 
 ### Alerts
 - `GET /api/alerts` - Get active alerts
@@ -163,7 +182,7 @@ Trust scores range from 0-100 based on six factors:
 ### Statistics
 - `GET /api/stats` - Get platform statistics
 
-## Architecture
+## 🏗 Architecture
 
 \`\`\`
 TrustGraph/
@@ -178,7 +197,7 @@ TrustGraph/
 │   ├── dashboard/               # Dashboard components
 │   └── providers/               # Context providers
 ├── lib/
-│   ├── ai/                      # AI analysis engine
+│   ├── analysis/                # Transaction analysis engine
 │   ├── blockchain/              # Blockchain integrations
 │   ├── websocket/               # WebSocket system
 │   └── redis/                   # Caching layer
@@ -187,7 +206,7 @@ TrustGraph/
 └── scripts/                     # Database scripts
 \`\`\`
 
-## Deployment
+## 🚀 Deployment
 
 ### Vercel Deployment (Recommended)
 
